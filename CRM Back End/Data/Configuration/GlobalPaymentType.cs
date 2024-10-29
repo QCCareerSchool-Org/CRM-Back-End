@@ -3,27 +3,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Data.Configuration;
-public class AffiliateIdConfiguration : IEntityTypeConfiguration<AffiliateId>
+public class GlobalPaymentTypeConfiguration : IEntityTypeConfiguration<GlobalPaymentType>
 {
-    public void Configure(EntityTypeBuilder<AffiliateId> entity)
+    public void Configure(EntityTypeBuilder<GlobalPaymentType> entity)
     {
-        entity.HasKey(e => e.EnrollmentId).HasName("PRIMARY");
+        entity.HasKey(e => e.GlobalPaymentTypeId).HasName("PRIMARY");
 
         entity
-            .ToTable("affiliate_ids")
+            .ToTable("global_payment_types")
             .HasCharSet("utf8")
             .UseCollation("utf8_general_ci");
 
-        entity.Property(e => e.EnrollmentId)
-            .ValueGeneratedNever()
-            .HasColumnType("int(10) unsigned")
-            .HasColumnName("enrollment_id");
-        entity.Property(e => e.AffiliateId1)
-            .HasColumnType("int(10) unsigned")
-            .HasColumnName("affiliate_id");
-
-        entity.HasOne(d => d.Enrollment).WithOne(p => p.AffiliateId)
-            .HasForeignKey<AffiliateId>(d => d.EnrollmentId)
-            .HasConstraintName("affiliate_ids_ibfk_1");
+        entity.Property(e => e.GlobalPaymentTypeId)
+            .HasMaxLength(25)
+            .HasColumnName("global_payment_type_id");
     }
 }
