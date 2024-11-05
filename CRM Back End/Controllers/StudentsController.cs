@@ -5,6 +5,7 @@
 namespace CRM.Controllers;
 
 using CRM.Data;
+using CRM.Data.Configuration;
 using CRM.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
